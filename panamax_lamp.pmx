@@ -1,0 +1,38 @@
+---
+name: Panamax Lamp
+description: ''
+keywords: php, mysql, zend framework 2, reddis
+type: LAMP
+documentation: |-
+  LAMP Setup
+  ====================
+
+  PHP
+  ---------------------
+
+  * 5.5
+
+  MySQL
+  ---------------------
+
+
+  REDIS
+  ---------------------
+images:
+- name: maglnet_docker-zf2_latest
+  source: maglnet/docker-zf2:latest
+  category: App
+  type: Default
+  ports:
+  - container_port: '80'
+    proto: TCP
+  links:
+  - service: dockerfile_mysql
+    alias: mysql
+  environment:
+  - variable: DOCKER_ZF2_ENV
+    value: DEV
+- name: dockerfile_mysql
+  source: dockerfile/mysql:latest
+  category: Data
+  type: Default
